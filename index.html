@@ -6,6 +6,8 @@
     <title>Multi Electric Supply Inc. | Suministros Eléctricos en Puerto Rico</title>
     <!-- Link to Compiled Tailwind CSS -->
     <link href="css/output.css" rel="stylesheet">
+    <!-- Link to Cards CSS -->
+    <link href="css/cards.css" rel="stylesheet">
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
     <!-- Meta Tags -->
@@ -54,7 +56,23 @@
             font-weight: bold;
         }
         body {
-            background: white;
+            background: linear-gradient(135deg, #0f4c81, #3498db, #f1c40f);
+            background-attachment: fixed;
+            color: #f8fafc;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M30,50 L70,50 M50,30 L50,70 M20,20 L35,35 M65,65 L80,80 M20,80 L35,65 M65,35 L80,20" stroke="rgba(255,255,255,0.05)" stroke-width="2"/></svg>'), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><path d="M20,100 L50,30 L80,100 L50,170 Z" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="2"/></svg>');
+            background-position: center;
+            background-size: 100px, 200px;
+            z-index: -1;
+            opacity: 0.3;
         }
         .footer-gradient {
             background: linear-gradient(to right, #000428, #004e92);
@@ -72,40 +90,63 @@
         .custom-footer-gradient {
             background: linear-gradient(to right, #000428, #004e92);
         }
+        .section-content {
+            background-color: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+        .text-dark-custom {
+            color: #f8fafc;
+        }
+        /* Header styles */
+        .site-header {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
     </style>
 </head>
-<body class="text-gray-800 font-sans">
+<body class="font-sans">
 
     <!-- Header -->
-    <header class="bg-blue-gradient shadow-md sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <div>
-                <!-- Updated Logo Image -->
-                <a href="index.html" class="hover:opacity-90 transition duration-300">
-                    <img src="img/MULTI ELECTRCI LOGO.jpg" alt="Multi Electric Supply Logo" class="h-10">
-                </a>
-            </div>
-            <div class="hidden md:flex items-center space-x-6">
-                <a href="index.html" class="text-white hover:text-blue-100 transition duration-300">Inicio</a>
-                <a href="about.html" class="text-white hover:text-blue-100 transition duration-300">Sobre Nosotros</a>
-                <a href="services.html" class="text-white hover:text-blue-100 transition duration-300">Servicios</a>
-                <a href="contact.html" class="text-white hover:text-blue-100 transition duration-300">Contacto</a>
-                <a href="contact.html" class="bg-white text-blue-600 px-4 py-2 rounded hover:bg-blue-100 transition duration-300 text-sm font-medium scroll-smooth">Contáctanos</a>
-            </div>
-            <div class="md:hidden flex items-center">
-                 <a href="contact.html" class="bg-white text-blue-600 px-3 py-1.5 rounded hover:bg-blue-100 transition duration-300 text-xs font-medium scroll-smooth mr-4">Contáctanos</a>
+    <header class="site-header shadow-md fixed w-full z-50 transition-all duration-300" id="header">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="w-40">
+                    <a href="index.html" class="block">
+                        <img src="img/MULTI ELECTRCI LOGO_LE_upscale_balanced_x4.jpg" alt="Multi Electric Supply Logo" class="w-full h-auto object-contain" style="max-height: 60px;">
+                    </a>
+                </div>
+                
+                <!-- Navigation - Desktop -->
+                <nav class="hidden md:flex flex-grow justify-center">
+                    <ul class="flex space-x-16 text-gray-200">
+                        <li><a href="index.html" class="hover:text-electric-blue transition duration-300 font-medium text-lg px-3 py-2">Inicio</a></li>
+                        <li><a href="about.html" class="hover:text-electric-blue transition duration-300 font-medium text-lg px-3 py-2">Sobre Nosotros</a></li>
+                        <li><a href="services.html" class="hover:text-electric-blue transition duration-300 font-medium text-lg px-3 py-2">Servicios</a></li>
+                        <li><a href="contact.html" class="hover:text-electric-blue transition duration-300 font-medium text-lg px-3 py-2">Contacto</a></li>
+                    </ul>
+                </nav>
+                
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-button" class="text-white focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                </button>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-200 hover:text-electric-blue focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
             </div>
-        </nav>
-        <!-- Mobile Menu (hidden by default, transitions added) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white absolute w-full shadow-lg transition-all duration-300 ease-in-out transform origin-top scale-y-0">
-            <a href="index.html" class="block px-6 py-3 text-sm text-dark-gray hover:bg-light-gray hover:text-electric-blue">Inicio</a>
-            <a href="about.html" class="block px-6 py-3 text-sm text-dark-gray hover:bg-light-gray hover:text-electric-blue">Sobre Nosotros</a>
-            <a href="services.html" class="block px-6 py-3 text-sm text-dark-gray hover:bg-light-gray hover:text-electric-blue">Servicios</a>
-            <a href="contact.html" class="block px-6 py-3 text-sm text-dark-gray hover:bg-light-gray hover:text-electric-blue">Contacto</a>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden mt-4 pb-2">
+                <ul class="flex flex-col space-y-4">
+                    <li><a href="index.html" class="block py-2 hover:text-electric-blue transition duration-300 text-center text-lg text-gray-200">Inicio</a></li>
+                    <li><a href="about.html" class="block py-2 hover:text-electric-blue transition duration-300 text-center text-lg text-gray-200">Sobre Nosotros</a></li>
+                    <li><a href="services.html" class="block py-2 hover:text-electric-blue transition duration-300 text-center text-lg text-gray-200">Servicios</a></li>
+                    <li><a href="contact.html" class="block py-2 hover:text-electric-blue transition duration-300 text-center text-lg text-gray-200">Contacto</a></li>
+                </ul>
+            </div>
         </div>
     </header>
 
@@ -134,57 +175,48 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Decorative Elements: Electric Sparks (SVG) -->
-            <div class="absolute bottom-0 right-0 w-full h-40 md:h-80 overflow-hidden opacity-30 z-10">
-                <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
-                    <path d="M223.3,85.1l-15.8,32.3l9.5,2.3l-17.9,50.2l49.1-52.5l-15.8-7.1l5.7-25.2L223.3,85.1z" fill="#ffffff" />
-                    <path d="M123.3,215.1l-15.8,32.3l9.5,2.3l-17.9,50.2l49.1-52.5l-15.8-7.1l5.7-25.2L123.3,215.1z" fill="#ffffff" />
-                    <path d="M323.3,185.1l-15.8,32.3l9.5,2.3l-17.9,50.2l49.1-52.5l-15.8-7.1l5.7-25.2L323.3,185.1z" fill="#ffffff" />
-                </svg>
-            </div>
         </section>
 
         <!-- About Us Section -->
-        <section id="about-section" class="py-16 bg-white">
+        <section id="about-section" class="py-16">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-dark-gray mb-4">¿Quiénes Somos?</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">¿Quiénes Somos?</h2>
                     <div class="w-24 h-1 bg-electric-blue mx-auto"></div>
                 </div>
                 
-                <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="section-content flex flex-col md:flex-row items-center justify-between">
                     <!-- Text Content -->
                     <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
-                        <h3 class="text-2xl font-semibold text-dark-gray mb-4">Su Proveedor de Confianza en Suministros Eléctricos</h3>
-                        <p class="text-gray-700 mb-4 leading-relaxed">
-                            En <span class="font-semibold text-electric-blue">Multi Electric Supply Inc.</span>, nos dedicamos a proporcionar productos eléctricos de la más alta calidad para empresas, industrias y profesionales en todo Puerto Rico.
+                        <h3 class="text-2xl font-semibold text-white mb-4">Su Proveedor de Confianza en Suministros Eléctricos</h3>
+                        <p class="text-gray-100 mb-4 leading-relaxed">
+                            En <span class="font-bold text-black">Multi Electric Supply Inc.</span>, nos dedicamos a proporcionar productos eléctricos de la más alta calidad para empresas, industrias y profesionales en todo Puerto Rico.
                         </p>
-                        <p class="text-gray-700 mb-6 leading-relaxed">
+                        <p class="text-gray-100 mb-6 leading-relaxed">
                             Con más de 20 años de experiencia en el sector, entendemos las necesidades específicas de nuestros clientes y ofrecemos soluciones personalizadas para todo tipo de proyectos eléctricos.
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4">
                             <div class="flex items-center">
-                                <div class="rounded-full bg-light-gray p-2 mr-3">
+                                <div class="rounded-full bg-electric-blue bg-opacity-20 p-2 mr-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-electric-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                                     </svg>
                                 </div>
-                                <span class="text-gray-700">Amplia experiencia</span>
+                                <span class="text-gray-100">Amplia experiencia</span>
                             </div>
                             <div class="flex items-center">
-                                <div class="rounded-full bg-light-gray p-2 mr-3">
+                                <div class="rounded-full bg-electric-blue bg-opacity-20 p-2 mr-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-electric-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                                     </svg>
                                 </div>
-                                <span class="text-gray-700">Servicio personalizado</span>
+                                <span class="text-gray-100">Servicio personalizado</span>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Image -->
-                    <div class="md:w-1/2 bg-light-gray rounded-lg overflow-hidden shadow-lg transform transition-transform hover:scale-105 duration-300">
+                    <div class="md:w-1/2 bg-black bg-opacity-20 rounded-lg overflow-hidden shadow-lg transform transition-transform hover:scale-105 duration-300">
                         <img src="img/Materiales Electricos E Iluminacion De Calidad.jpg" 
                              alt="Equipo de Multi Electric Supply Inc." 
                              class="w-full h-full object-contain">
@@ -194,169 +226,171 @@
         </section>
 
         <!-- Services Section -->
-        <section id="services-section" class="py-16 bg-light-gray">
+        <section id="services-section" class="py-16">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-dark-gray mb-4">Nuestros Servicios</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Nuestros Servicios</h2>
                     <div class="w-24 h-1 bg-electric-blue mx-auto"></div>
-                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Ofrecemos una amplia gama de servicios para satisfacer todas sus necesidades eléctricas.</p>
+                    <p class="text-gray-200 mt-4 max-w-2xl mx-auto">Ofrecemos una amplia gama de servicios para satisfacer todas sus necesidades eléctricas.</p>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- Service Card 1 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-                        <div class="p-1 bg-electric-blue"></div>
-                        <div class="p-6">
-                            <div class="w-16 h-16 rounded-full bg-light-gray flex items-center justify-center mb-6 mx-auto">
+                    <div class="e-card">
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="card-content">
+                            <div class="icon-container">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-electric-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                                 </svg>
                             </div>
-                            <h3 class="text-xl font-bold text-dark-gray mb-3 text-center">Venta de Suministros Eléctricos</h3>
-                            <p class="text-gray-600 text-center">
+                            <h3 class="card-title text-xl font-bold">Venta de Suministros Eléctricos</h3>
+                            <p class="card-description">
                                 Ofrecemos una amplia variedad de productos eléctricos de alta calidad para todo tipo de aplicaciones industriales y comerciales.
                             </p>
                         </div>
                     </div>
                     
                     <!-- Service Card 2 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-                        <div class="p-1 bg-electric-blue"></div>
-                        <div class="p-6">
-                            <div class="w-16 h-16 rounded-full bg-light-gray flex items-center justify-center mb-6 mx-auto">
+                    <div class="e-card">
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="card-content">
+                            <div class="icon-container">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-electric-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                                 </svg>
                             </div>
-                            <h3 class="text-xl font-bold text-dark-gray mb-3 text-center">Asesoría para Instalaciones Eléctricas</h3>
-                            <p class="text-gray-600 text-center">
+                            <h3 class="card-title text-xl font-bold">Asesoría para Instalaciones Eléctricas</h3>
+                            <p class="card-description">
                                 Nuestro equipo de expertos brinda asesoramiento técnico para ayudarle a seleccionar los productos adecuados para sus proyectos.
                             </p>
                         </div>
                     </div>
                     
                     <!-- Service Card 3 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-                        <div class="p-1 bg-electric-blue"></div>
-                        <div class="p-6">
-                            <div class="w-16 h-16 rounded-full bg-light-gray flex items-center justify-center mb-6 mx-auto">
+                    <div class="e-card">
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="card-content">
+                            <div class="icon-container">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-electric-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
                                 </svg>
                             </div>
-                            <h3 class="text-xl font-bold text-dark-gray mb-3 text-center">Distribución a Empresas e Industrias</h3>
-                            <p class="text-gray-600 text-center">
+                            <h3 class="card-title text-xl font-bold">Distribución a Empresas e Industrias</h3>
+                            <p class="card-description">
                                 Realizamos entregas rápidas y eficientes de suministros eléctricos a empresas e industrias en todo Puerto Rico.
                             </p>
                         </div>
                     </div>
                 </div>
-                
-                <!-- View All Services Button -->
-                <div class="text-center mt-12">
-                    <a href="services.html" class="inline-block bg-white text-electric-blue border-2 border-electric-blue px-6 py-2 rounded-md font-medium hover:bg-electric-blue hover:text-white transition duration-300">
-                        Ver todos los servicios
-                    </a>
-                </div>
             </div>
         </section>
 
         <!-- Why Choose Us Section -->
-        <section id="why-choose-us" class="py-16 bg-white relative overflow-hidden">
-            <!-- Background decorative element -->
-            <div class="absolute -right-10 top-10 w-64 h-64 rounded-full bg-electric-blue opacity-5"></div>
-            <div class="absolute -left-20 bottom-10 w-80 h-80 rounded-full bg-electric-blue opacity-5"></div>
+        <section id="why-choose-us" class="py-16 relative overflow-hidden">
+            <!-- Background decorative elements removed -->
 
             <div class="container mx-auto px-6 relative z-10">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-dark-gray mb-4">¿Por Qué Escogernos?</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">¿Por Qué Escogernos?</h2>
                     <div class="w-24 h-1 bg-electric-blue mx-auto"></div>
-                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Somos su mejor opción en suministros eléctricos en Puerto Rico por nuestro compromiso con la calidad y el servicio.</p>
+                    <p class="text-gray-200 mt-4 max-w-2xl mx-auto">Somos su mejor opción en suministros eléctricos en Puerto Rico por nuestro compromiso con la calidad y el servicio.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Feature 1 -->
-                    <div class="bg-light-gray p-6 rounded-lg shadow-md transform transition duration-300 hover:shadow-lg hover:-translate-y-1">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 mr-4">
-                                <div class="w-12 h-12 rounded-full bg-electric-blue text-white flex items-center justify-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                </div>
+                    <div class="e-card">
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="card-content">
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-electric-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
                             </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-dark-gray mb-2">Más de 20 años de experiencia</h3>
-                                <p class="text-gray-600">Contamos con amplia trayectoria en el sector de suministros eléctricos, lo que nos permite ofrecer soluciones efectivas.</p>
-                            </div>
+                            <h3 class="card-title text-lg font-bold">Más de 20 años de experiencia</h3>
+                            <p class="card-description">
+                                Contamos con amplia trayectoria en el sector de suministros eléctricos, lo que nos permite ofrecer soluciones efectivas.
+                            </p>
                         </div>
                     </div>
 
                     <!-- Feature 2 -->
-                    <div class="bg-light-gray p-6 rounded-lg shadow-md transform transition duration-300 hover:shadow-lg hover:-translate-y-1">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 mr-4">
-                                <div class="w-12 h-12 rounded-full bg-electric-blue text-white flex items-center justify-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
+                    <div class="e-card">
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="card-content">
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-electric-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
                             </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-dark-gray mb-2">Amplio inventario en suministros eléctricos</h3>
-                                <p class="text-gray-600">Disponemos de una extensa gama de productos eléctricos para satisfacer cualquier requerimiento.</p>
-                            </div>
+                            <h3 class="card-title text-lg font-bold">Amplio inventario en suministros eléctricos</h3>
+                            <p class="card-description">
+                                Disponemos de una extensa gama de productos eléctricos para satisfacer cualquier requerimiento.
+                            </p>
                         </div>
                     </div>
 
                     <!-- Feature 3 -->
-                    <div class="bg-light-gray p-6 rounded-lg shadow-md transform transition duration-300 hover:shadow-lg hover:-translate-y-1">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 mr-4">
-                                <div class="w-12 h-12 rounded-full bg-electric-blue text-white flex items-center justify-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                                    </svg>
-                                </div>
+                    <div class="e-card">
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="card-content">
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-electric-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
                             </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-dark-gray mb-2">Servicio rápido y atención personalizada</h3>
-                                <p class="text-gray-600">Nuestro equipo está comprometido con brindar un servicio ágil y adaptado a las necesidades de cada cliente.</p>
-                            </div>
+                            <h3 class="card-title text-lg font-bold">Servicio rápido y atención personalizada</h3>
+                            <p class="card-description">
+                                Nuestro equipo está comprometido con brindar un servicio ágil y adaptado a las necesidades de cada cliente.
+                            </p>
                         </div>
                     </div>
 
                     <!-- Feature 4 -->
-                    <div class="bg-light-gray p-6 rounded-lg shadow-md transform transition duration-300 hover:shadow-lg hover:-translate-y-1">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 mr-4">
-                                <div class="w-12 h-12 rounded-full bg-electric-blue text-white flex items-center justify-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                                    </svg>
-                                </div>
+                    <div class="e-card">
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="card-content">
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-electric-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                </svg>
                             </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-dark-gray mb-2">Productos de calidad garantizada</h3>
-                                <p class="text-gray-600">Trabajamos únicamente con marcas reconocidas que cumplen con los estándares de calidad y seguridad.</p>
-                            </div>
+                            <h3 class="card-title text-lg font-bold">Productos de calidad garantizada</h3>
+                            <p class="card-description">
+                                Trabajamos únicamente con marcas reconocidas que cumplen con los estándares de calidad y seguridad.
+                            </p>
                         </div>
                     </div>
 
                     <!-- Feature 5 - Precios competitivos -->
-                    <div class="bg-light-gray p-6 rounded-lg shadow-md transform transition duration-300 hover:shadow-lg hover:-translate-y-1">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 mr-4">
-                                <div class="w-12 h-12 rounded-full bg-electric-blue text-white flex items-center justify-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                </div>
+                    <div class="e-card">
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="card-content">
+                            <div class="icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-electric-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
                             </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-dark-gray mb-2">Precios competitivos</h3>
-                                <p class="text-gray-600">Ofrecemos la mejor relación calidad-precio en todos nuestros productos y servicios.</p>
-                            </div>
+                            <h3 class="card-title text-lg font-bold">Precios competitivos</h3>
+                            <p class="card-description">
+                                Ofrecemos la mejor relación calidad-precio en todos nuestros productos y servicios.
+                            </p>
                         </div>
                     </div>
 
@@ -388,8 +422,8 @@
                 <div>
                     <h3 class="text-xl font-bold mb-4">Contacto</h3>
                     <p class="mb-2">Carretera #2 Km 25.7, Vega Alta, PR 00692</p>
-                    <p class="mb-2">Teléfono: (787) 883-0044</p>
-                    <p class="mb-2">Email: ventas@mutielectricsupply.com</p>
+                    <p class="mb-2">Teléfono: (787) 963-0569</p>
+                    <p class="mb-2">Email: hzayas@multielectricpr.com</p>
                     <p>Lunes a Viernes: 7:00 AM - 5:00 PM</p>
                     <p>Sábado: 8:00 AM - 12:00 PM</p>
                 </div>

@@ -53,7 +53,26 @@
             font-weight: bold;
         }
         body {
-            background: white;
+            background: linear-gradient(135deg, #0f4c81, #3498db, #f1c40f);
+            background-attachment: fixed;
+            color: #f8fafc;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M30,50 L70,50 M50,30 L50,70 M20,20 L35,35 M65,65 L80,80 M20,80 L35,65 M65,35 L80,20" stroke="rgba(255,255,255,0.05)" stroke-width="2"/></svg>'), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><path d="M20,100 L50,30 L80,100 L50,170 Z" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="2"/></svg>');
+            background-position: center;
+            background-size: 100px, 200px;
+            z-index: -1;
+            opacity: 0.3;
         }
         .footer-gradient {
             background: linear-gradient(to right, #000428, #004e92);
@@ -62,53 +81,75 @@
         .custom-footer-gradient {
             background: linear-gradient(to right, #000428, #004e92);
         }
+        .site-header {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .section-content {
+            background-color: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+        main {
+            flex: 1;
+        }
     </style>
 </head>
-<body class="text-gray-800 font-sans">
+<body class="font-sans">
     <!-- Header -->
-    <header class="bg-blue-gradient shadow-md sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <div>
-                <!-- Updated Logo Image -->
-                <a href="index.html" class="hover:opacity-90 transition duration-300">
-                    <img src="img/MULTI ELECTRCI LOGO.jpg" alt="Multi Electric Supply Logo" class="h-10">
-                </a>
-            </div>
-            <div class="hidden md:flex items-center space-x-6">
-                <a href="index.html" class="text-white hover:text-blue-100 transition duration-300">Inicio</a>
-                <a href="about.html" class="text-white hover:text-blue-100 transition duration-300">Sobre Nosotros</a>
-                <a href="services.html" class="text-white hover:text-blue-100 transition duration-300 font-medium">Servicios</a>
-                <a href="contact.html" class="text-white hover:text-blue-100 transition duration-300">Contacto</a>
-                <a href="tel:+17879630569" class="bg-white text-blue-600 px-4 py-2 rounded hover:bg-blue-100 transition duration-300 text-sm font-medium">Llámanos</a>
-            </div>
-            <div class="md:hidden flex items-center">
-                <a href="tel:+17879630569" class="bg-white text-blue-600 px-3 py-1.5 rounded hover:bg-blue-100 transition duration-300 text-xs font-medium mr-4">Llámanos</a>
+    <header class="site-header shadow-md fixed w-full z-50 transition-all duration-300" id="header">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="w-40">
+                    <a href="index.html" class="block">
+                        <img src="img/MULTI ELECTRCI LOGO_LE_upscale_balanced_x4.jpg" alt="Multi Electric Supply Logo" class="w-full h-auto object-contain" style="max-height: 60px;">
+                    </a>
+                </div>
+                
+                <!-- Navigation - Desktop -->
+                <nav class="hidden md:flex flex-grow justify-center">
+                    <ul class="flex space-x-16 text-gray-200">
+                        <li><a href="index.html" class="hover:text-electric-blue transition duration-300 font-medium text-lg px-3 py-2">Inicio</a></li>
+                        <li><a href="about.html" class="hover:text-electric-blue transition duration-300 font-medium text-lg px-3 py-2">Sobre Nosotros</a></li>
+                        <li><a href="services.html" class="hover:text-electric-blue transition duration-300 font-medium text-lg px-3 py-2">Servicios</a></li>
+                        <li><a href="contact.html" class="hover:text-electric-blue transition duration-300 font-medium text-lg px-3 py-2">Contacto</a></li>
+                    </ul>
+                </nav>
+                
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-button" class="text-white focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                </button>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-200 hover:text-electric-blue focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
             </div>
-        </nav>
-        <!-- Mobile Menu (hidden by default, transitions added) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white absolute w-full shadow-lg transition-all duration-300 ease-in-out transform origin-top scale-y-0">
-            <a href="index.html" class="block px-6 py-3 text-sm text-dark-gray hover:bg-light-gray hover:text-electric-blue">Inicio</a>
-            <a href="about.html" class="block px-6 py-3 text-sm text-dark-gray hover:bg-light-gray hover:text-electric-blue">Sobre Nosotros</a>
-            <a href="services.html" class="block px-6 py-3 text-sm text-dark-gray hover:bg-light-gray hover:text-electric-blue font-medium">Servicios</a>
-            <a href="contact.html" class="block px-6 py-3 text-sm text-dark-gray hover:bg-light-gray hover:text-electric-blue">Contacto</a>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden mt-4 pb-2">
+                <ul class="flex flex-col space-y-4">
+                    <li><a href="index.html" class="block py-2 hover:text-electric-blue transition duration-300 text-center text-lg text-gray-200">Inicio</a></li>
+                    <li><a href="about.html" class="block py-2 hover:text-electric-blue transition duration-300 text-center text-lg text-gray-200">Sobre Nosotros</a></li>
+                    <li><a href="services.html" class="block py-2 hover:text-electric-blue transition duration-300 text-center text-lg text-gray-200">Servicios</a></li>
+                    <li><a href="contact.html" class="block py-2 hover:text-electric-blue transition duration-300 text-center text-lg text-gray-200">Contacto</a></li>
+                </ul>
+            </div>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-4 py-16">
-        <div class="bg-white rounded-lg shadow-lg p-12 text-center max-w-2xl mx-auto">
-            <h1 class="text-3xl md:text-4xl font-bold text-dark-gray mb-6">Próximamente</h1>
+    <main class="container mx-auto px-4 py-32">
+        <div class="section-content text-center max-w-2xl mx-auto">
+            <h1 class="text-3xl md:text-4xl font-bold text-white mb-6">Próximamente</h1>
             <div class="w-24 h-1 bg-electric-blue mx-auto mb-8"></div>
             
-            <p class="text-xl text-gray-600 mb-8">
+            <p class="text-xl text-gray-100 mb-8">
                 Estamos trabajando en actualizar esta sección para ofrecerle más información sobre nuestros servicios.
             </p>
             
-            <p class="text-lg text-gray-600 mb-10">
+            <p class="text-lg text-gray-100 mb-10">
                 Vuelva pronto para conocer todas las soluciones que Multi Electric Supply Inc. ofrece.
             </p>
             
@@ -140,8 +181,8 @@
                 <div>
                     <h3 class="text-xl font-bold mb-4">Contacto</h3>
                     <p class="mb-2">Carretera #2 Km 25.7, Vega Alta, PR 00692</p>
-                    <p class="mb-2">Teléfono: (787) 883-0044</p>
-                    <p class="mb-2">Email: ventas@mutielectricsupply.com</p>
+                    <p class="mb-2">Teléfono: (787) 963-0569</p>
+                    <p class="mb-2">Email: hzayas@multielectricpr.com</p>
                     <p>Lunes a Viernes: 7:00 AM - 5:00 PM</p>
                     <p>Sábado: 8:00 AM - 12:00 PM</p>
                 </div>

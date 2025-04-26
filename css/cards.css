@@ -1,0 +1,123 @@
+/* Card design from Uiverse.io by MikeAndrewDesigner */
+.e-card {
+  background: rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 8px 28px -9px rgba(0,0,0,0.45);
+  position: relative;
+  height: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  margin-bottom: 1rem;
+  backdrop-filter: blur(5px);
+}
+
+.e-card:hover {
+  transform: translateY(-10px);
+}
+
+.wave {
+  position: absolute;
+  width: 540px;
+  height: 700px;
+  opacity: 0.6;
+  left: 0;
+  top: 0;
+  margin-left: -50%;
+  margin-top: -70%;
+  background: linear-gradient(744deg, #0f4c81, #3498db 60%, #60a5fa);
+}
+
+.wave:nth-child(2) {
+  background: linear-gradient(744deg, #2980b9, #3498db 60%, #74b9ff);
+}
+
+.wave:nth-child(3) {
+  background: linear-gradient(744deg, #f39c12, #f1c40f 60%, #ffeaa7);
+}
+
+.icon-container {
+  width: 4em;
+  height: 4em;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5em;
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.card-title {
+  color: white;
+  font-weight: 600;
+  margin-bottom: 1em;
+}
+
+.card-description {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.wave:nth-child(2),
+.wave:nth-child(3) {
+  top: 210px;
+}
+
+.wave {
+  border-radius: 40%;
+  animation: wave 55s infinite linear;
+}
+
+.wave:nth-child(2) {
+  animation-duration: 50s;
+}
+
+.wave:nth-child(3) {
+  animation-duration: 45s;
+}
+
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+  .e-card {
+    margin-bottom: 2rem;
+  }
+  
+  .icon-container {
+    width: 3.5em;
+    height: 3.5em;
+    margin-bottom: 1em;
+  }
+  
+  .card-content {
+    padding: 1.25rem;
+  }
+  
+  .card-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.75em;
+  }
+  
+  .card-description {
+    font-size: 0.9rem;
+  }
+} 
