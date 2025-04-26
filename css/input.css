@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .bg-blue-gradient {
+    background: linear-gradient(to right, #2563eb, #60a5fa);
+  }
+  
+  .logo-text {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+} 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200px" height="60px" viewBox="0 0 200 60" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#60a5fa" />
+    </linearGradient>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <text font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white">
+      <tspan x="10" y="40">Multi Electric</tspan>
+    </text>
+    <path d="M170,20 L180,10 L190,20 L180,30 Z" fill="#ffb800" />
+    <path d="M165,30 L175,20 L185,30 L175,40 Z" fill="#ffb800" />
+  </g>
+</svg> 
