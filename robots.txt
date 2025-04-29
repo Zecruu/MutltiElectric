@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Sitemap: https://multielectricsupply.com/sitemap.xml
 
-Sitemap: https://multielectricsupply.com/sitemap.xml 
+# Allow all bots to access the entire site
+# Sitemap is provided for better indexing 

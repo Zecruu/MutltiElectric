@@ -1,27 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://multielectricsupply.com/</loc>
-    <lastmod>2024-04-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://multielectricsupply.com/about.html</loc>
-    <lastmod>2024-04-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://multielectricsupply.com/services.html</loc>
-    <lastmod>2024-04-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://multielectricsupply.com/contact.html</loc>
-    <lastmod>2024-04-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+    <!-- Homepage -->
+    <url>
+        <loc>https://multielectricsupply.com/</loc>
+        <lastmod>2024-04-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- Main Pages -->
+    <url>
+        <loc>https://multielectricsupply.com/about.html</loc>
+        <lastmod>2024-04-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://multielectricsupply.com/services.html</loc>
+        <lastmod>2024-04-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://multielectricsupply.com/contact.html</loc>
+        <lastmod>2024-04-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Images -->
+    <url>
+        <loc>https://multielectricsupply.com/img/MULTI%20ELECTRCI%20LOGO_LE_upscale_balanced_x4.jpg</loc>
+        <lastmod>2024-04-28</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://multielectricsupply.com/img/ElectricidadSupplidor.png</loc>
+        <lastmod>2024-04-28</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://multielectricsupply.com/img/Materiales%20Electricos%20E%20Iluminacion%20De%20Calidad.jpg</loc>
+        <lastmod>2024-04-28</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
+    </url>
 </urlset> 
