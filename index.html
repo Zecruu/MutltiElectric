@@ -8,6 +8,8 @@
     <link href="css/output.css" rel="stylesheet">
     <!-- Link to Cards CSS -->
     <link href="css/cards.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
     <!-- Meta Tags -->
@@ -101,52 +103,239 @@
         }
         /* Header styles */
         .site-header {
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: #001220;
+            position: fixed;
+            width: 100%;
+            height: 80px;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+        }
+        .electric-wave {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+        .electric-wave::before,
+        .electric-wave::after {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(circle, rgba(255, 196, 0, 0.15) 0%, transparent 80%);
+            animation: waveEffect 8s linear infinite;
+            opacity: 0.6;
+        }
+        .electric-wave::after {
+            background: radial-gradient(circle, rgba(0, 119, 255, 0.2) 0%, transparent 70%);
+            animation: waveEffect 6s linear infinite reverse;
+            opacity: 0.5;
+        }
+        @keyframes waveEffect {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        .electric-spark {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5l-5 15h10L30 35l5-15H25z' stroke='rgba(255,196,0,0.3)' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+            animation: sparkle 3s linear infinite;
+            z-index: 2;
+        }
+        @keyframes sparkle {
+            0% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 0.3;
+            }
+        }
+        .header-content {
+            position: relative;
+            z-index: 1001;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            background-color: rgba(0, 18, 32, 0.3);
+            backdrop-filter: blur(5px);
+        }
+        .logo-container {
+            flex-shrink: 0;
+            height: 60px;
+            margin-right: 2rem;
+            position: relative;
+            z-index: 1002;
+        }
+        .site-logo {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .site-logo:hover {
+            transform: scale(1.05);
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            background: rgba(0, 20, 40, 0.6);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+            position: relative;
+            z-index: 1002;
+        }
+        .nav-links a {
+            color: white;
+            font-size: 1.125rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #0077ff;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        .nav-links a:hover {
+            color: #0077ff;
+        }
+        .mobile-menu-button {
+            display: none;
+            padding: 0.5rem;
+            background: rgba(0, 20, 40, 0.7);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            position: relative;
+            z-index: 1002;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu-button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                background: rgba(0, 20, 40, 0.8);
+                border-radius: 8px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            .mobile-menu-button:hover {
+                background: rgba(0, 119, 255, 0.3);
+            }
+            #mobile-menu {
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: rgba(0, 20, 40, 0.95);
+                backdrop-filter: blur(10px);
+                padding: 1rem;
+                border-radius: 0 0 16px 16px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+                visibility: hidden;
+            }
+            #mobile-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            #mobile-menu a {
+                display: block;
+                padding: 1rem;
+                color: white;
+                text-decoration: none;
+                font-size: 1.1rem;
+                text-align: center;
+                transition: all 0.3s ease;
+                border-radius: 8px;
+            }
+            #mobile-menu a:hover {
+                background: rgba(0, 119, 255, 0.2);
+                color: #0077ff;
+            }
+            .site-logo {
+                height: 50px; /* Slightly smaller logo on mobile */
+            }
+            .header-content {
+                padding: 0 1rem;
+            }
         }
     </style>
 </head>
 <body class="font-sans">
 
     <!-- Header -->
-    <header class="site-header shadow-md fixed w-full z-50 transition-all duration-300" id="header">
-        <div class="container mx-auto px-6 py-3">
-            <div class="flex items-center justify-between">
-                <!-- Logo -->
-                <div class="w-40">
-                    <a href="index.html" class="block">
-                        <img src="img/MULTI ELECTRCI LOGO_LE_upscale_balanced_x4.jpg" alt="Multi Electric Supply Logo" class="w-full h-auto object-contain" style="max-height: 60px;">
-                    </a>
-                </div>
-                
-                <!-- Navigation - Desktop -->
-                <nav class="hidden md:flex flex-grow justify-center">
-                    <ul class="flex space-x-16 text-gray-200">
-                        <li><a href="index.html" class="hover:text-electric-blue transition duration-300 font-medium text-lg px-3 py-2">Inicio</a></li>
-                        <li><a href="about.html" class="hover:text-electric-blue transition duration-300 font-medium text-lg px-3 py-2">Sobre Nosotros</a></li>
-                        <li><a href="services.html" class="hover:text-electric-blue transition duration-300 font-medium text-lg px-3 py-2">Servicios</a></li>
-                        <li><a href="contact.html" class="hover:text-electric-blue transition duration-300 font-medium text-lg px-3 py-2">Contacto</a></li>
-                    </ul>
-                </nav>
-                
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-button" class="text-gray-200 hover:text-electric-blue focus:outline-none">
-                        <i class="fas fa-bars text-2xl"></i>
-                    </button>
-                </div>
+    <header class="site-header">
+        <div class="electric-wave"></div>
+        <div class="electric-spark"></div>
+        <div class="header-content">
+            <!-- Logo -->
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="img/MULTI ELECTRCI LOGO_LE_upscale_balanced_x4.jpg" alt="Multi Electric Supply Logo" class="site-logo">
+                </a>
             </div>
             
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="md:hidden hidden mt-4 pb-2">
-                <ul class="flex flex-col space-y-4">
-                    <li><a href="index.html" class="block py-2 hover:text-electric-blue transition duration-300 text-center text-lg text-gray-200">Inicio</a></li>
-                    <li><a href="about.html" class="block py-2 hover:text-electric-blue transition duration-300 text-center text-lg text-gray-200">Sobre Nosotros</a></li>
-                    <li><a href="services.html" class="block py-2 hover:text-electric-blue transition duration-300 text-center text-lg text-gray-200">Servicios</a></li>
-                    <li><a href="contact.html" class="block py-2 hover:text-electric-blue transition duration-300 text-center text-lg text-gray-200">Contacto</a></li>
-                </ul>
-            </div>
+            <!-- Navigation - Desktop -->
+            <nav class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="about.html">Sobre Nosotros</a>
+                <a href="services.html">Servicios</a>
+                <a href="contact.html">Contacto</a>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-button" aria-label="Toggle menu">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu">
+            <a href="index.html">Inicio</a>
+            <a href="about.html">Sobre Nosotros</a>
+            <a href="services.html">Servicios</a>
+            <a href="contact.html">Contacto</a>
         </div>
     </header>
 
@@ -427,7 +616,7 @@
                 <!-- Contact Information -->
                 <div>
                     <h3 class="text-xl font-bold mb-4">Contacto</h3>
-                    <p class="mb-2">Carretera #2 Km 25.7, Vega Alta, PR 00692</p>
+                    <p class="mb-2">D1–D99 PR-874, Carolina, PR 00983</p>
                     <p class="mb-2">Teléfono: (787) 963-0569</p>
                     <p class="mb-2">Email: hzayas@multielectricpr.com</p>
                     <p>Lunes a Viernes: 7:00 AM - 5:00 PM</p>
@@ -463,11 +652,51 @@
     </a>
     
     <!-- Map Location Float Button -->
-    <a href="https://maps.apple.com/?address=D1%E2%80%93D99%20PR-874,%20Carolina,%20PR%20%2000983,%20United%20States&ll=18.380084,-65.955969&q=D1%E2%80%93D99%20PR-874&t=m" target="_blank" class="fixed bottom-10 right-10 flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 transition duration-300 shadow-lg z-50">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <a href="https://maps.apple.com/?address=D1%E2%80%93D99%20PR-874,%20Carolina,%20PR%20%2000983,%20United%20States&ll=18.380084,-65.955969&q=D1%E2%80%93D99%20PR-874&t=m" target="_blank" class="fixed bottom-6 left-6 bg-electric-blue w-16 h-16 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition-all duration-300 z-50 hover:scale-110" aria-label="Ver ubicación en Google Maps">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
         </svg>
     </a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const header = document.querySelector('.site-header');
+            
+            // Toggle mobile menu
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                const icon = this.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!header.contains(event.target) && mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    const icon = mobileMenuButton.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            // Handle window resize
+            let resizeTimer;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function() {
+                    if (window.innerWidth > 768 && mobileMenu.classList.contains('active')) {
+                        mobileMenu.classList.remove('active');
+                        const icon = mobileMenuButton.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                }, 250);
+            });
+        });
+    </script>
 </body>
 </html> 
