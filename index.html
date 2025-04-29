@@ -255,12 +255,14 @@
                 background: rgba(0, 20, 40, 0.8);
                 border-radius: 8px;
                 border: 1px solid rgba(255, 255, 255, 0.1);
+                z-index: 1002;
             }
             .mobile-menu-button:hover {
                 background: rgba(0, 119, 255, 0.3);
             }
             #mobile-menu {
-                position: absolute;
+                display: none;
+                position: fixed;
                 top: 80px;
                 left: 0;
                 right: 0;
@@ -269,15 +271,11 @@
                 padding: 1rem;
                 border-radius: 0 0 16px 16px;
                 border: 1px solid rgba(255, 255, 255, 0.1);
-                transform: translateY(-100%);
-                opacity: 0;
-                transition: all 0.3s ease;
-                visibility: hidden;
+                z-index: 2000;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             }
             #mobile-menu.active {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
+                display: block;
             }
             #mobile-menu a {
                 display: block;
@@ -288,16 +286,21 @@
                 text-align: center;
                 transition: all 0.3s ease;
                 border-radius: 8px;
+                margin-bottom: 0.5rem;
             }
             #mobile-menu a:hover {
                 background: rgba(0, 119, 255, 0.2);
                 color: #0077ff;
             }
             .site-logo {
-                height: 50px; /* Slightly smaller logo on mobile */
+                height: 50px;
             }
             .header-content {
                 padding: 0 1rem;
+            }
+            /* Adjust padding for menu to account for fixed header */
+            main {
+                padding-top: 80px;
             }
         }
     </style>
@@ -329,15 +332,15 @@
                 <i class="fas fa-bars text-2xl"></i>
             </button>
         </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu">
-            <a href="index.html">Inicio</a>
-            <a href="about.html">Sobre Nosotros</a>
-            <a href="services.html">Servicios</a>
-            <a href="contact.html">Contacto</a>
-        </div>
     </header>
+
+    <!-- Mobile Menu -->
+    <nav id="mobile-menu">
+        <a href="index.html">Inicio</a>
+        <a href="about.html">Sobre Nosotros</a>
+        <a href="services.html">Servicios</a>
+        <a href="contact.html">Contacto</a>
+    </nav>
 
     <!-- Main Content -->
     <main>
@@ -663,38 +666,39 @@
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuButton = document.querySelector('.mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
-            const header = document.querySelector('.site-header');
             
             // Toggle mobile menu
-            mobileMenuButton.addEventListener('click', function() {
-                mobileMenu.classList.toggle('active');
-                const icon = this.querySelector('i');
-                icon.classList.toggle('fa-bars');
-                icon.classList.toggle('fa-times');
-            });
-
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!header.contains(event.target) && mobileMenu.classList.contains('active')) {
+            mobileMenuButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation(); // Prevent click from bubbling to document
+                
+                // Toggle menu visibility
+                if (mobileMenu.classList.contains('active')) {
                     mobileMenu.classList.remove('active');
-                    const icon = mobileMenuButton.querySelector('i');
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
+                    this.querySelector('i').classList.remove('fa-times');
+                    this.querySelector('i').classList.add('fa-bars');
+                } else {
+                    mobileMenu.classList.add('active');
+                    this.querySelector('i').classList.remove('fa-bars');
+                    this.querySelector('i').classList.add('fa-times');
                 }
             });
 
-            // Handle window resize
-            let resizeTimer;
-            window.addEventListener('resize', function() {
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(function() {
-                    if (window.innerWidth > 768 && mobileMenu.classList.contains('active')) {
-                        mobileMenu.classList.remove('active');
-                        const icon = mobileMenuButton.querySelector('i');
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target) && mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    const icon = mobileMenuButton.querySelector('i');
+                    if (icon.classList.contains('fa-times')) {
                         icon.classList.remove('fa-times');
                         icon.classList.add('fa-bars');
                     }
-                }, 250);
+                }
+            });
+
+            // Prevent menu from closing when clicking inside it
+            mobileMenu.addEventListener('click', function(e) {
+                e.stopPropagation();
             });
         });
     </script>
